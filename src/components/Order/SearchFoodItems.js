@@ -57,7 +57,18 @@ const SearchFoodItems = (props) => {
   useEffect(() => {
     createAPIEndPoint(ENDPOINTS.FOODITEM)
       .fetchAll()
-      .then((res) => setFoodItems(res.data))
+      .then((res) => {
+        setFoodItems(res.data);
+        const foodItems = res.data;
+        let x = [...foodItems];
+        x = x.filter((y) => {
+          return (
+            y.foodItemName.toLowerCase().includes(searchKey.toLowerCase()) &&
+            orderedFoodItems.every((item) => item.foodItemId !== y.foodItemId)
+          );
+        });
+        setSearchList(x);
+      })
       .catch((err) => {
         console.log(err);
       });

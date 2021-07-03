@@ -83,7 +83,7 @@ const OrderForm = (props) => {
   }, [JSON.stringify(values.orderDetails)]);
 
   useEffect(() => {
-    if (orderId == 0) resetFormControls();
+    if (orderId === 0) resetFormControls();
     else {
       console.log(orderId);
       createAPIEndPoint(ENDPOINTS.ORDER)
@@ -94,7 +94,6 @@ const OrderForm = (props) => {
         })
         .catch((err) => console.log(err));
     }
-    console.log("sad");
   }, [orderId]);
 
   const validateForm = () => {
@@ -110,7 +109,7 @@ const OrderForm = (props) => {
   const submitOrder = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      if (values.orderMasterId == 0) {
+      if (values.orderMasterId === 0) {
         createAPIEndPoint(ENDPOINTS.ORDER)
           .create(values)
           .then((res) => {
@@ -166,7 +165,7 @@ const OrderForm = (props) => {
               <Select
                 label="Customer"
                 name="customerId"
-                value={values.customerId}
+                value={values? "" : values.customerId}
                 onChange={(e) => handleInputChange(e)}
                 options={customerList}
                 error={errors.customerId}

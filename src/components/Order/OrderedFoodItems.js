@@ -66,7 +66,7 @@ const OrderedFoodItems = (props) => {
   const removeFoodItem = (index, id) => {
     let x = { ...values };
     x.orderDetails = x.orderDetails.filter((_, i) => i !== index);
-    if (id != 0) x.deletedOrderItemIds += id + ",";
+    if (id !== 0) x.deletedOrderItemIds += id + ",";
     setValues({ ...x });
   };
 
