@@ -85,7 +85,6 @@ const OrderForm = (props) => {
   useEffect(() => {
     if (orderId === 0) resetFormControls();
     else {
-      console.log(orderId);
       createAPIEndPoint(ENDPOINTS.ORDER)
         .fetchById(orderId)
         .then((res) => {
@@ -165,7 +164,7 @@ const OrderForm = (props) => {
               <Select
                 label="Customer"
                 name="customerId"
-                value={values? "" : values.customerId}
+                value={values.customerId === 0? "" : values.customerId}
                 onChange={(e) => handleInputChange(e)}
                 options={customerList}
                 error={errors.customerId}
